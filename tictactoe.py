@@ -40,10 +40,24 @@ def board_won(board_values, player):
 values = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 next_player = "x"
 
+
+def get_position_from_user():
+    while True:
+        new_position = int(input("Give me a position: "))
+
+        if new_position > 8:
+            print("No es una posición válida, favor de elegir un valor entre 0 y 8")
+        elif values[new_position] == "x" or values[new_position] == "o":
+            print("You can't re-use a position, cheater!")
+        else:
+            break
+    return new_position
+
 print_board(values)
 
 for turn in range(9):
-    new_position = int(input("Give me a position: "))
+    new_position = get_position_from_user()
+
     if turn % 2 == 0:
         new_player = "x"
     else:
